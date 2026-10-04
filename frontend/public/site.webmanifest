@@ -1,0 +1,17 @@
+{
+  "name": "Worthly Website Revenue Checker",
+  "short_name": "Worthly",
+  "description": "Estimate monthly traffic, ad revenue, and website value for any domain.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071018",
+  "theme_color": "#071018",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "worthly",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node start.mjs",
+    "start": "node start.mjs"
+  }
+}
