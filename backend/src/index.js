@@ -8,8 +8,23 @@ const CACHE_TTL = 15 * 60 * 1000;
 
 app.use(express.json());
 
+const allowedOrigins = String(process.env.CORS_ORIGIN || "*")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 app.use((req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes("*")) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  } else if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.status(204).end();
   next();
 });
 

@@ -1,5 +1,11 @@
-async function getJson(url) {
-  const res = await fetch(url);
+const API = String(import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+
+function apiUrl(path) {
+  return `${API}${path}`;
+}
+
+async function getJson(path) {
+  const res = await fetch(apiUrl(path));
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Request failed");
   return data;
@@ -22,7 +28,7 @@ export function fetchPopular() {
 }
 
 export async function calculate(body) {
-  const res = await fetch("/api/calculate", {
+  const res = await fetch(apiUrl("/api/calculate"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
